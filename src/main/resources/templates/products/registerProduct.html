@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head" :: head></div>
+<body>
+    <div th:replace="fragments/header" :: header></div>
+    <div th:replace="fragments/nav" :: nav></div>
+    
+    <main>
+        <h3 th:text="${title}"></h3>
+        <form th:action="@{/products/registerProduct}" method="POST" th:object="${objPro}">
+            <div>
+                <input type="text" placeholder="Nombre" th:field="${objPro.name_product}">
+            </div>
+            <div>
+                <input type="text" placeholder="Apellido" th:field="${objPro.description}">
+            </div>
+            <div>
+                <input type="text" placeholder="Salario" th:field="${objPro.unit_price}">
+            </div>
+            <div>
+                <input type="text" placeholder="Puesto" th:field="${objPro.stock}">
+            </div>
+            <div>
+                <input type="submit" value="Registrar">
+            </div>    
+        </form>
+
+    </main>
+</body>
+</html>
