@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head" :: head></div>
+<body>
+    <div th:replace="fragments/header" :: header></div>
+    <div th:replace="fragments/nav" :: nav></div>
+    
+    <main>
+        <h3 th:text="${title}"></h3>
+        <form th:action="@{/usuarios/updateUsuario/{id}(id=${objUsu.id})}" method="POST" th:object="${objPro}">
+            <div>
+                <input type="text" placeholder="Nombre" th:field="${objUsu.nameuser}">
+            </div>
+                <input type="text" placeholder="Apellido" th:field="${objUsu.lastnameuser}">
+            <div>
+                <input type="text" placeholder="Clave" th:field="${objUsu.passworduser}">
+            </div>
+                <input type="text" placeholder="Direccion" th:field="${objUsu.address}">
+            <div>
+                <input type="submit" value="Actualizar">
+            </div>    
+        </form>
+
+    </main>
+</body>
+</html>
