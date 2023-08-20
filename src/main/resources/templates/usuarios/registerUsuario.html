@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head" :: head></div>
+<body>
+    <div th:replace="fragments/header" :: header></div>
+    <div th:replace="fragments/nav" :: nav></div>
+    
+    <main>
+        <h3 th:text="${title}"></h3>
+        <form th:action="@{/usuarios/registerUsuario}" method="POST" th:object="${objusu}">
+            <div>
+                <input type="text" placeholder="Nombre" th:field="${objusu.nameuser}">
+            </div>
+            <div>
+                <input type="text" placeholder="Apellido" th:field="${objusu.lastnameuser}">
+            </div>
+            <div>
+                <input type="text" placeholder="DNI " th:field="${objusu.document}">
+            </div>
+            <div>
+                <input type="text" placeholder="Correo" th:field="${objusu.email}">
+            </div>
+            <div>
+                <input type="text" placeholder="Direccion" th:field="${objusu.address}">
+            </div>
+            <div>
+                <input type="text" placeholder="Contraseña" th:field="${objusu.passworduser}">
+            </div>
+            <div>
+                <select th:field="${objusu.gender}">
+                    <option value="">Seleccione su Genero</option>
+                    <option th:each="gender : ${generos}" th:value="${gender.idgender}" th:text="${gender.gender}"></option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="Registrar">
+            </div>    
+        </form>
+
+    </main>
+</body>
+</html>

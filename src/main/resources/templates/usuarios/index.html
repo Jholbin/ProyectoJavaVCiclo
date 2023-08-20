@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head" :: head></div>
+<body>
+    <div th:replace="fragments/header" :: header></div>
+    <div th:replace="fragments/nav" :: nav></div>
+    
+    <main>
+    
+
+        <a th:href="@{/usuarios/registerUsuario}">Agregar nuevo Usuario</a> | 
+        <a th:href="@{/usuarios/downloadReporte}">Descargar reporte</a>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>DNI</td>
+                    <td>Direccion</td>
+                    <td>Correo</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="u:${lstUsuarios}">
+                    <td th:text="${u.id}"></td>
+                    <td th:text="${u.nameuser}"></td>
+                    <td th:text="${u.lastnameuser}"></td>
+                    <td th:text="${u.document}"></td>
+                    <td th:text="${u.address}"></td>
+                    <td th:text="${u.email}"></td>
+                    <td><a th:href="@{/usuarios/frmUpdateUsuario/{id}(id=${u.id})}">Actualizar</a></td>
+                    <td><a th:href="@{/usuarios/deleteUsuario/{id}(id=${u.id})}">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+</body>
+</html>

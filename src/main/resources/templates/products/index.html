@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head" :: head></div>
+<body>
+    <div th:replace="fragments/header" :: header></div>
+    <div th:replace="fragments/nav" :: nav></div>
+    
+    <main>
+        <form th:action="@{/products/search}" method="get">
+            <input type="text" name="nombre" placeholder="Buscar por nombre">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <form th:action="@{/products/searchcat}" method="get">
+            <input type="text" name="category" placeholder="Buscar por Categoria">
+            <button type="submit">Buscar</button>
+        </form>
+        <a th:href="@{/products/registerProduct}">Agregar nuevo Producto</a> | 
+        <a th:href="@{/products/downloadReport}">Descargar reporte</a>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Descripcion</td>
+                    <td>precio</td>
+                    <td>stock</td>
+                    <td>categoria</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p:${lstProducts}">
+                    <td th:text="${p.id}"></td>
+                    <td th:text="${p.name_product}"></td>
+                    <td th:text="${p.description}"></td>
+                    <td th:text="${p.unit_price}"></td>
+                    <td th:text="${p.stock}"></td>
+                    <td th:text="${p.category.description}"></td>
+                    <td><a th:href="@{/products/frmUpdateProduct/{id}(id=${p.id})}">Actualizar</a></td>
+                    <td><a th:href="@{/products/deleteProduct/{id}(id=${p.id})}">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    
+</body>
+</html>
